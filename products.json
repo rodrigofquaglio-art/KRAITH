@@ -1,0 +1,100 @@
+[
+ {
+  "id": 1,
+  "n": "Camiseta Oversized Basalto",
+  "c": "men",
+  "p": 129.9,
+  "t": "#4a4a45"
+ },
+ {
+  "id": 2,
+  "n": "Camiseta Estampada Ruína",
+  "c": "men",
+  "p": 149.9,
+  "t": "#8a8d8c"
+ },
+ {
+  "id": 3,
+  "n": "Camiseta Essencial Preta",
+  "c": "men",
+  "p": 99.9,
+  "t": "#161616"
+ },
+ {
+  "id": 4,
+  "n": "Camiseta Linho Areia",
+  "c": "men",
+  "p": 139.9,
+  "t": "#d8d3c8"
+ },
+ {
+  "id": 5,
+  "n": "Camisa Polo Névoa",
+  "c": "women",
+  "p": 159.9,
+  "t": "#d9cfc2"
+ },
+ {
+  "id": 6,
+  "n": "Blusa Tricô Cinza",
+  "c": "women",
+  "p": 189.9,
+  "t": "#9c9a96"
+ },
+ {
+  "id": 7,
+  "n": "Top Canelado Noir",
+  "c": "women",
+  "p": 89.9,
+  "t": "#222"
+ },
+ {
+  "id": 8,
+  "n": "Camisa Ampla Marfim",
+  "c": "women",
+  "p": 219.9,
+  "t": "#eee9df"
+ },
+ {
+  "id": 9,
+  "n": "Suéter Listrado Mini",
+  "c": "kids",
+  "p": 119.9,
+  "t": "#e6e2dc"
+ },
+ {
+  "id": 10,
+  "n": "Camiseta Kids Bege",
+  "c": "kids",
+  "p": 69.9,
+  "t": "#cdbfa8"
+ },
+ {
+  "id": 11,
+  "n": "Moletom Kids Grafite",
+  "c": "kids",
+  "p": 129.9,
+  "t": "#555"
+ },
+ {
+  "id": 12,
+  "n": "Hidratante Facial Neutro",
+  "c": "beauty",
+  "p": 79.9,
+  "t": "#c9c6c0"
+ },
+ {
+  "id": 13,
+  "n": "Perfume KRAITH 50ml",
+  "c": "beauty",
+  "p": 249.9,
+  "t": "#111"
+ },
+ {
+  "id": 14,
+  "n": "Balm Labial Cedro",
+  "c": "beauty",
+  "p": 34.9,
+  "t": "#a58f76"
+ }
+]

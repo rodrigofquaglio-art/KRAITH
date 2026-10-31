@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>KRAITH Admin</title><link rel="stylesheet" href="/style.css"></head>
+<body><div class="page"><h1>KRAITH — Admin</h1><div id="m">Carregando...</div></div>
+<script>
+let K=sessionStorage.getItem('ak')||'',P=[],O=[];const $=s=>document.querySelector(s),H=()=>({'Content-Type':'application/json','x-admin-key':K});
+async function init(){if(!K){K=prompt('Senha do admin')||'';sessionStorage.setItem('ak',K)}
+ const r=await fetch('/api/orders?all=1',{headers:H()});if(r.status==401){sessionStorage.removeItem('ak');return $('#m').innerHTML='<p>Senha incorreta. Recarregue a página.</p>'}
+ O=await r.json();P=await(await fetch('/api/products')).json();draw()}
+function draw(){$('#m').innerHTML=`<div class="chips"><button class="chip on" onclick="add()">+ Produto</button><button class="chip on" onclick="save()">Salvar catálogo</button><button class="chip" onclick="seed()">Importar exemplos</button></div>
+${P.map((p,i)=>`<div class="f" style="grid-template-columns:2fr 1fr 1fr 1fr 2fr auto;gap:6px;margin-bottom:8px"><input class="i" value="${p.n}" oninput="P[${i}].n=this.value"><select class="i" onchange="P[${i}].c=this.value">${['men','women','kids','beauty'].map(c=>`<option ${c==p.c?'selected':''}>${c}</option>`).join('')}</select><input class="i" type="number" step=".01" value="${p.p}" oninput="P[${i}].p=+this.value"><input class="i" value="${p.t}" oninput="P[${i}].t=this.value"><input class="i" placeholder="URL da imagem" value="${p.img||''}" oninput="P[${i}].img=this.value"><button class="chip" onclick="P.splice(${i},1);draw()">✕</button></div>`).join('')||'<p>Catálogo vazio no banco — clique em “Importar exemplos”.</p>'}
+<h1 style="margin-top:40px">Pedidos</h1>${O.map(o=>`<div class="row" style="grid-template-columns:1fr auto auto auto auto"><div><b>#${o.id}</b> ${o.payer.name} · ${o.payer.email}<br><small>${o.items.map(i=>i.n+' ×'+i.q+' ('+i.s+')').join(', ')} — ${o.address.street||''}, ${o.address.number||''} ${o.cep}</small></div><b>R$ ${o.total.toFixed(2)}</b><select class="i" id="s${o.id}">${['pending','paid','shipped','cancelled'].map(s=>`<option ${s==o.status?'selected':''}>${s}</option>`).join('')}</select><input class="i" id="t${o.id}" placeholder="Rastreio" value="${o.tracking||''}"><button class="chip" onclick="upd('${o.id}')">OK</button></div>`).join('')||'<p>Sem pedidos.</p>'}`}
+function add(){P.push({id:Math.max(0,...P.map(x=>x.id))+1,n:'Novo produto',c:'men',p:99,t:'#777777'});draw()}
+async function save(){const r=await fetch('/api/products',{method:'POST',headers:H(),body:JSON.stringify(P)});alert(r.ok?'Catálogo salvo!':'Erro ao salvar')}
+async function seed(){P=await(await fetch('/products.json')).json();draw()}
+async function upd(id){const r=await fetch('/api/orders',{method:'PATCH',headers:H(),body:JSON.stringify({id,status:$('#s'+id).value,tracking:$('#t'+id).value})});alert(r.ok?'Pedido atualizado':'Erro')}
+init();
+</script></body></html>
